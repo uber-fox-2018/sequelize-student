@@ -71,7 +71,59 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Student.prototype.getPhone = function(){
-    return 
+    var phone = this.phone
+    if(phone.length % 3 === 0){
+      var limit = 2
+      var str = ''
+     for(var i = 0; i < phone.length;i++){
+         if(i === phone.length-1){
+             str += phone[i]
+         }else if(i === limit){
+             str += phone[i] +'-'
+             limit += 3
+         }else{
+             str += phone[i]
+             
+         }
+     }
+
+  }else if(phone.length % 3 === 2) {
+      var limit = 2
+      var str = ''
+      for(var i = 0; i < phone.length;i++){
+         if(i > phone.length-3){
+             str += phone[i]
+         }else if(i === limit){
+              str += phone[i] +'-'
+              limit += 3
+          }else{
+              str += phone[i]
+              
+          }
+      }
+
+  }else{
+      var limit = 2
+      var str = ''
+      for(var i = 0; i < phone.length;i++){
+         if(i > phone.length-5){
+             if(i === phone.length-3){
+                 str += phone[i]+'-'
+             }else{
+                 str+= phone[i]
+             }
+         }else if(i === limit){
+              str += phone[i] +'-'
+              limit += 3
+          }else{
+              str += phone[i]
+              
+          }
+      }
+      
+      
+  }
+    return str
   }
 
 

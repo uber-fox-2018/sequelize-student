@@ -65,7 +65,7 @@ class Controller{
     static getPhone(id){
         Model.Student.findById(id)
         .then(data =>{
-            console.log(data);
+            console.log(data.getPhone());
             
         })
 
