@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isIn: {
           args: [["female","male"]],
-          msg: "Last Name mush beetween 2 and 30"
+          msg: "Just male or female"
         }
       }
     },
