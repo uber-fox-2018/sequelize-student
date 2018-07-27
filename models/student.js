@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 				isEmail:{
 					msg: "invalid email format"
 				},
+				is:/^\w+@[a-z]\.[a-z]{3}$/i,
 				isUnique:(value, next)=>{
 					Student.find({
 						where: {email: value},
