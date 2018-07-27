@@ -48,6 +48,13 @@ class StudentView {
             console.log(err.message)
         })
     }
+
+    static displayHelp() {
+        console.log(`$ node index.js list #display all students`)
+        console.log(`$ node index.js list:male #display only male students`)
+        console.log(`$ node index.js list:female #display only male students`)
+        console.log(`$ node index.js register #register new student`)
+    }
 }
 
 module.exports = StudentView;

@@ -24,8 +24,11 @@ class StudentController {
             .catch(err => View.displayError(err))
     }
 
-    update() {
-
+    maleOnly() {
+        model.Student
+            .getMaleStudents()
+            .then(students => View.displayList(students))
+            .catch(err => View.displayError(err))
     }
 
     delete(id) {
@@ -38,8 +41,8 @@ class StudentController {
             .catch(err => View.displayError(err))
     }
 
-    findByName() {
-
+    help() {
+        View.displayHelp()
     }
 }
 

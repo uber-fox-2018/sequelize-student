@@ -64,6 +64,13 @@ module.exports = (sequelize, DataTypes) => {
       });
   }
 
+  Student.getMaleStudents = function (models) {
+    return this
+      .findAll({
+        where: { gender: 'male' }
+      });
+  }
+
 
 
   return Student;

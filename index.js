@@ -17,7 +17,13 @@ switch (commands[0]) {
             case 'list':
                 student.list();
                 break;
-            case 'add': {
+            case 'list:female':
+                student.femaleOnly();
+                break;
+            case 'list:male':
+                student.maleOnly();
+                break;
+            case 'register': {
                 rl.question('First name: ', first_name => {
                     rl.question('Last name: ', last_name => {
                         rl.question('Gender: ', gender => {
@@ -36,12 +42,12 @@ switch (commands[0]) {
                 })
             } break;
             default:
-                console.log(`A`);
+                student.help();
                 break;
         }
     } break;
     default:
-        console.log(`B`);
+        student.help();
         break;
 }
 
