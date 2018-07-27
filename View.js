@@ -1,9 +1,9 @@
 class View {
     static DisplayStudent(students) {
-        console.clear()
-        students.forEach(student => {
-            
-        });
+        // console.clear()
+        // students.forEach(student => {
+            console.log(students)
+        // });
     }
 
     static DisplayNewRecord(student) {

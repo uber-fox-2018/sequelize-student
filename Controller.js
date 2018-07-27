@@ -7,10 +7,20 @@ class Controller {
     }
 
     findAll() {
+        Model.Student.findAll({raw:true})
+        .then(function(students) {
+            for(let i of students) {
+                View.DisplayStudent(i)
+            }
+        })
+    }
+
+    findFullName() {
         Model.Student.findAll()
         .then(function(students) {
-            console.log(students)
-            // View.DisplayStudent(students)
+            for(let i of students) {
+                View.DisplayStudent(i.getFullName())
+            }
         })
     }
 
@@ -18,7 +28,7 @@ class Controller {
         let first_name = this.input[0]
         let last_name = this.input[1]
         let gender = this.input[2]
-        let birthdat = this.input[3]
+        let birthday = this.input[3]
         let phone = this.input[4]
         let email = this.input[5]
 
@@ -26,7 +36,7 @@ class Controller {
             first_name: first_name,
             last_name: last_name,
             gender: gender,
-            birthdat: birthdat,
+            birthday: birthday,
             phone: phone,
             email: email
         }
@@ -34,6 +44,12 @@ class Controller {
         .then(student => {
             View.DisplayNewRecord(student)
         })
+        .catch( data => {
+            console.log(data.errors[0].message);
+            
+        }
+
+        )
     }
 
     help() {

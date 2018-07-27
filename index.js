@@ -33,25 +33,3 @@ class Routes {
 }
 
 new Routes(argv)
-
-
-// Model.Student.findAll()
-// .then((data) => {
-//     for(let i of data) {
-//         console.log(i.getFullName())
-//     }
-// })
-// .catch((err) => {
-//     console.log(err)
-// })
-
-
-// // Model.Student.findAll()
-// // .then((data) => {
-// //     for(let i of data) {
-// //         console.log(i.getAge(i.birthdat))
-// //     }
-// // })
-// // .catch((err) => {
-// //     console.log(err)
-// // })
