@@ -1,7 +1,8 @@
 const Model = require('./models')
-let students = new Model.Student
 
 // instance method
+let students = new Model.Student
+
 Model.Student.prototype.fullName = () => {
     Model.Student.findAll()
     .then( student => {
@@ -36,5 +37,22 @@ Model.Student.prototype.ageStudent = () => {
 // students.ageStudent()
 
 
+// Class Method
+Model.Student.getFemaleStudent =  ()  => {
+    Model.Student.findAll({
+        raw:true
+    })
+    .then( student => {
+        let result = []
+        for(let i = 0; i < student.length; i++){
+           let firstName = student[i].first_name
+           let lastName = student[i].last_name
+           let fullName  = student[i].first_name + ' ' + student[i].last_name
+           let temp      = `first name : ${firstName}, last name : ${lastName}, fullName : ${fullName}`
+           result.push(temp)
+        }
+        console.log(result)
+    })
+}
 
-
+Model.Student.getFemaleStudent()
