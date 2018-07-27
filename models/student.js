@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
 				isEmail:{
 					msg: "invalid email format"
 				},
-				is:/^\w+@[a-z]\.[a-z]{3}$/i,
+				is:{
+					args:/^\w+@[a-z]\.[a-z]{3}$/i,
+					msg:"invalid email format"
+				},
 				isUnique:(value, next)=>{
 					Student.find({
 						where: {email: value},
@@ -24,7 +27,6 @@ module.exports = (sequelize, DataTypes) => {
 							if (user)
 								return next("Email address already in use!");
 							next();
-	
 						});	
 				}
 
