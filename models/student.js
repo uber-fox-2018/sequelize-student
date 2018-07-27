@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 			validate: {
 				is:{
 					args:/^\w+@[a-z]+\.[a-z]{3}$/i,
-					msg:"invalid email format2"
+					msg:"invalid email format"
 				},
 				isUnique:(value, next)=>{
 					Student.find({
