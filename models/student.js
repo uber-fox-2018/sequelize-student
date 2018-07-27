@@ -86,7 +86,34 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Student.formatPhone = function(phoneNumber) {
-    
+    let countDash = Math.floor(phoneNumber.length / 3)
+    let str = ''
+    let countIndex = 0
+    let modValid = phoneNumber.length % 3
+    let countDash2 = 1
+    if(modValid === 0) {
+        for(let i = 0; i < phoneNumber.length; i++) {
+            if(countIndex % 3 === 0 && countIndex !== 0) {
+                str += '-'
+            }
+          str += phoneNumber[i] 
+          countIndex++
+        }
+    } else {
+      for(let i = 0; i < phoneNumber.length; i++) {
+          if(countIndex % 3 === 0 && countIndex !== 0 && countDash !== 0 && i < phoneNumber.length -3) {
+              str += '-'
+              countDash--
+          }
+          if(i > phoneNumber.length -3 && countDash2 !== 0) {
+              str += '-'
+              countDash2--
+          }
+        str += phoneNumber[i] 
+        countIndex++
+      }
+    }
+    return str
   }
 
   return Student;

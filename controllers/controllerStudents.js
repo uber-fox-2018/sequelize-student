@@ -81,8 +81,10 @@ class ControllerStudent {
             // console.log(data);
             
             data.forEach(element => {
-                // let phoneFormat = Model Student.Student.formatPhone(data.phone)
-                console.log(element.phone);
+                let phoneFormat = ModelStudent.Student.formatPhone(element.phone)
+                // console.log(element.phone);
+                console.log(phoneFormat);
+                
             })
         })
         .catch(err => {
