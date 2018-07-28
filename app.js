@@ -22,7 +22,7 @@ model.Student.prototype.getAge = () => {
   model.Student.findAll({
     raw: true,
     attributes: ['id', 'first_name', 'last_name', 'birthday']
-  })
+  })  
   .then( data => {
     data.forEach(student => {
       let fullName = `${student.first_name} ${student.last_name}`;
@@ -56,4 +56,21 @@ student.getFemaleStudent = () => {
   });
 }
 
-student.getFemaleStudent();
+// student.getFemaleStudent();
+
+student.getPhone = () => {
+  model.Student.findAll({
+    raw: true,
+    attributes: ['phone']
+  })
+  .then(data => {
+    console.log(data);
+    
+  }) 
+  .catch(err => {
+    console.log(err);
+    
+  }) 
+}
+
+student.getPhone()
