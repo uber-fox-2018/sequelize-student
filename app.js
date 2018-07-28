@@ -1,58 +1,40 @@
-const Model = require('./models')
+const argv = process.argv.slice(2)
+const input = argv[0]
+const Controller = require('./control/controller.js')
+const readline   = require('readline')
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
 
-// instance method
-let students = new Model.Student
-
-Model.Student.prototype.fullName = () => {
-    Model.Student.findAll()
-    .then( student => {
-        let result = []
-        for(let i = 0; i < student.length; i++){
-           result.push(`${student[i].first_name} ${student[i].last_name}`)
-        }
-        console.log(result)
-    })
+switch (input) {
+    case "fullName":
+        Controller.fullName()
+        break;
+    case "getAge":
+        Controller.age()
+        break;
+    case "getFemale":
+        Controller.getFemale()
+        break;
+    case "addData":
+        rl.question('first name : ', (first_name) => {
+            rl.question('last name : ', (last_name) => {
+                rl.question('gender : ', (gender) => {
+                    rl.question('birthday : ', (birthday) => {
+                        rl.question('email : ', (email) => {
+                            rl.question('phone : ', (phone) => {
+                                rl.question('height : ', (height) => {
+                                    Controller.addDataStudent(first_name, last_name, gender, birthday, email, phone, height)
+                                    rl.close()
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        break;
+    default:
+        break;
 }
-
-// students.fullName()
-
-Model.Student.prototype.ageStudent = () => {
-    Model.Student.findAll({
-        raw:true
-    })
-    .then( student => {
-       
-        let result = []
-        for(let i = 0; i < student.length; i++){
-           let studentName = student[i].first_name
-           let currentYear = 2018 
-           let studentBirthday = Number(student[i].birthday.slice(0,4))
-           let temp = studentName + ' ' + (currentYear - studentBirthday) + ' tahun'
-           result.push(temp)
-        }
-        console.log(result)
-    })
-}
-
-// students.ageStudent()
-
-
-// Class Method
-Model.Student.getFemaleStudent =  ()  => {
-    Model.Student.findAll({
-        raw:true
-    })
-    .then( student => {
-        let result = []
-        for(let i = 0; i < student.length; i++){
-           let firstName = student[i].first_name
-           let lastName = student[i].last_name
-           let fullName  = student[i].first_name + ' ' + student[i].last_name
-           let temp      = `first name : ${firstName}, last name : ${lastName}, fullName : ${fullName}`
-           result.push(temp)
-        }
-        console.log(result)
-    })
-}
-
-Model.Student.getFemaleStudent()
