@@ -86,38 +86,21 @@ module.exports = (sequelize, DataTypes) => {
     return `${studentAge}`;
   }
 
-  Student.prototype.phoneView = function () {
-    let phoneStr = this.phone;
-    let str = '';
-    let tempArr = [];
-    if (phoneStr.length % 3 == 0) { //for 12 digits
-      for (let i = 0; i < phoneStr.length; i++) {
-        str += phoneStr[i];
-        if(str.length == 3) {
-          tempArr.push(str);
-          str = '';
-        }
-      }
-    } else {
-      for (let i = 0; i < phoneStr.length; i++) {
-        if (i > phoneStr.length - 4) {
-          str += phoneStr[i];
-          if (str.length == 2) {
-            tempArr.push(str);
-            // console.log('...', tempArr)
-            str = '';
-          }
-        } else {
-          str += phoneStr[i];
-          if (str.length == 3) {
-            tempArr.push(str);
-            // console.log('---', tempArr);
-            str = '';
-          }
-        }
-      }
+  Student.prototype.phoneView = function(){
+    return this.getPhoneFormat(this.phone);
+  }
+
+  Student.prototype.getPhoneFormat = function(phoneStr){
+    if(phoneStr.length === 3 || phoneStr.length === 2){
+      return phoneStr.join("");
     }
-    return tempArr.join('-');
+    else if(phoneStr.length === 4){
+      return phoneStr.splice(0,2).join("") + "-" + this.getPhoneFormat(phoneStr);
+    }
+    else{
+      let arrayNum = Array.from(phoneStr);
+      return arrayNum.splice(0,3).join("") + "-" + this.getPhoneFormat(arrayNum);
+    }
   }
 
   // CLASS METHOD
